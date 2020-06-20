@@ -87,13 +87,3 @@ class hog_feature_generator:
 				self.descriptor[np.isnan(self.descriptor)] = 0.0
 
 		return self.hog_descriptor
-
-
-image=cv2.imread("sample_fruits.jpg")
-image=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-hog_test=hog_feature_generator()
-descriptor= hog_test.generate_feats(image, (8, 8), 2)
-
-print(descriptor)
-# print(np.argwhere(dire > 180))
