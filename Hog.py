@@ -8,8 +8,9 @@ class hog_feature_generator:
 		self.gy=None
 		self.magnitudes=None
 		self.directions=None
-		self.canny_util=Canny_edge_detector()
 		self.image_into_pos=None
+		self.hog_descriptor=None
+		self.canny_util=Canny_edge_detector()
 
 	def generate_grads(self, image):
 		#status: complete
@@ -24,10 +25,30 @@ class hog_feature_generator:
 		self.magnitudes=self.canny_util.mag_from_grads(self.gx, self.gy)
 
 	def histogram_for_position(self, m_matrix, d_matrix):
-		#status: incomplete
+		#status: complete 
+		##############start here
+		histogram=np.zeros(9)
+		x_len=m_matrix.shape[0]
+		y_len=m_matrix.shape[1]
 
+		for i in range(x_len):
+			for j in range(y_len):
+				current_mag=m_matrix[i][j]
+				current_dir=d_matrix[i][j]
+				percentage=(current_dir%20)/20
 
-	def generate_feats(self, image, hist_window_dims, b_size):
+				hist_position=int(current_mag/20)-1
+				if(hist_position>=8):
+					hist_position_next=0
+				else:
+					hist_position_next=hist_position+1
+
+				histogram[hist_position]+=((1-percentage)*current_mag)
+				histogram[hist_position_next]+=(percentage*current_mag)
+
+		return(histogram)
+
+	def generate_feats(self, image, hist_window_dims, norm_window_size):
 		#status: incomplete
 	#steps as said in README
 
@@ -41,20 +62,38 @@ class hog_feature_generator:
 		y_dim=hist_window_dims[1]
 		x, y=self.magnitudes.shape
 		
-		self.image_into_pos=np.zeros((x/x_dim, y/y_dim, 9))#9 histogram valued array in each position.
+		self.image_into_pos=np.zeros((int(x/x_dim), int(y/y_dim), 9))#9 histogram valued array in each position.
 
-		for i in range(x/x_dim):
-			for y in range(y/y_dim):
+		for i in range(int(x/x_dim)):
+			for j in range(int(y/y_dim)):
 				histogram_array=self.histogram_for_position(self.magnitudes[i*x_dim: i*x_dim+x_dim, j*y_dim: j*y_dim+y_dim], self.directions[i*x_dim: i*x_dim+x_dim, j*y_dim: j*y_dim+y_dim])
 				self.image_into_pos[i][j]=histogram_array
 
-		# return (self.magnitudes)
+	#step 4 : 16*16 block normalization and concatenation
+		x_len, y_len, n_hists_per_window=self.image_into_pos.shape
 		
+		norm_x_len= int(x_len-norm_window_size/2)
+		norm_y_len= int(y_len-norm_window_size/2)
+
+		self.hog_descriptor=np.zeros((norm_x_len, norm_y_len, 36))#cuz size gets reduced according to the window size (as window has to use 9*4 histograms)
+
+
+		for i in range(norm_x_len):
+			for j in range(norm_y_len):
+				hist_concat_pos=np.concatenate((self.image_into_pos[i][j], self.image_into_pos[i+1][j], self.image_into_pos[i][j+1], self.image_into_pos[i+1][j+1]), axis=None)
+				L2_normalized_val=math.sqrt(np.sum(hist_concat_pos**2))
+
+				self.hog_descriptor[i][j]=hist_concat_pos/L2_normalized_val
+				self.descriptor[np.isnan(self.descriptor)] = 0.0
+
+		return self.hog_descriptor
+
+
 image=cv2.imread("sample_fruits.jpg")
 image=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 hog_test=hog_feature_generator()
-mags= hog_test.generate_feats(image, 2, 1)
+descriptor= hog_test.generate_feats(image, (8, 8), 2)
 
-print(mags)
+print(descriptor)
 # print(np.argwhere(dire > 180))
