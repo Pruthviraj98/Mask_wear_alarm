@@ -62,7 +62,6 @@ ref:learnopencv.com/histogram-of-oriented-gradients/
 		Hence, 36*1*105=3780 valued vector conatenated to be returned as a hog vector.
 		
 ### Neural Network building explained:
-ref:https://towardsdatascience.com/lets-code-a-neural-network-in-plain-numpy-ae7e74410795
 
 	Step 1. Initialization of the network layers
 		The weights and bias are initiated in the beginning for each layer. Weights is the matrix of [n(l), n(l-1)] dimension whereas Bias is the matrix of [n(l), 1]. where l is a layer. 
