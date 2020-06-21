@@ -61,7 +61,25 @@ class NN:
 		else:
 			return(self.sigmoid(y), y)
 
-	def forward_pass_over_network(self, )
+	def forward_pass_over_network(self, prev_a):
+		# status: incomplete
+		cache_mem={}
+		for index, layer in enumerate(self.Network_dims):
+			current_w=self.params_init["W_"+str(index+1)]
+			current_b=self.params_init["B_"+str(index+1)]
+			if(index==len(Network_dims)-1):
+				activation="sigmoid"
+			else:
+				activation="relu"
+			current_a, current_y=self.forward_pass(current_a, current_w, current_b, activation)
+			cache_mem['A_'+str(index+1)]=current_a
+			cache_mem['Z_'+str(index+1)]=current_y
+		return (current_a, cache_mem)
+
+	def loss_function(self, y_actual, y):
+		
+		
+	def back_pass(self):
 
 
 nn=NN([4, 3, 3, 1], 2)
