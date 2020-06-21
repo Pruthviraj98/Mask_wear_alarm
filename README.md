@@ -64,27 +64,26 @@ ref:learnopencv.com/histogram-of-oriented-gradients/
 ### Neural Network building explained:
 ref:https://towardsdatascience.com/lets-code-a-neural-network-in-plain-numpy-ae7e74410795
 
-Step 1. Initialization of the network layers
-	The weights and bias are initiated in the beginning for each layer. Weights is the matrix of [n(l), n(l-1)] dimension whereas Bias is the matrix of [n(l), 1]. where l is a layer. 
+	Step 1. Initialization of the network layers
+		The weights and bias are initiated in the beginning for each layer. Weights is the matrix of [n(l), n(l-1)] dimension whereas Bias is the matrix of [n(l), 1]. where l is a layer. 
+		Initialize the layers with their respective input, output, activation functions in a dictionary. The input and output vectors  are assigned with the small random values initially.
 
-	Initialize the layers with their respective input, output, activation functions in a dictionary. The input and output vectors  are assigned with the small random values initially.
+	Step 2. Define activation functions - relu and 
+		sigmoid used in this case. (with an input x)
 
-Step 2. Define activation functions - relu and 
-	sigmoid used in this case. (with an input x)
+	Step 3. Define the forward function for single layer 
+		taking in the previous activation A(l-1) and calculating current Z. Further calculate the current activation A by passing it through the required function. Return both Z and A. Z is needed for backward propagation further.
 
-Step 3. Define the forward function for single layer 
-	taking in the previous activation A(l-1) and calculating current Z. Further calculate the current activation A by passing it through the required function. Return both Z and A. Z is needed for backward propagation further.
+	Step 4. Define the fully forward propagation module
+		Using the function for single layered forward propagation, define the fully forward propagation module by iterating through the layers and passing on the activations A and getting back Z value. Store A's and Z's in the memory dictionary and return it.
 
-Step 4. Define the fully forward propagation module
-	Using the function for single layered forward propagation, define the fully forward propagation module by iterating through the layers and passing on the activations A and getting back Z value. Store A's and Z's in the memory dictionary and return it.
+	Step 5. Define Loss function
+		Binary Cross entropy in this case. 
 
-Step 5. Define Loss function
-	Binary Cross entropy in this case. 
+	Step 6. Define Backward prop function for single layer
+		Refer link to the equations: https://miro.medium.com/max/268/1*FZ4slpsaH_U0YYhaSRqUEQ.gif
 
-Step 6. Define Backward prop function for single layer
-	Refer link to the equations: https://miro.medium.com/max/268/1*FZ4slpsaH_U0YYhaSRqUEQ.gif
+	Step 7. Define the fully backward propagation module
+		Using the  Single Backward prop function create the fully backward prop module
 
-Step 7. Define the fully backward propagation module
-	Using the  Single Backward prop function create the fully backward prop module
-
-Step 8. Create Train, Test and Update modules
+	Step 8. Create Train, Test and Update modules
