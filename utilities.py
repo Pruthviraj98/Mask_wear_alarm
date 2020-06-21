@@ -1,3 +1,9 @@
+'''
+author: Pruthviraj Patil
+version: 1.0
+
+'''
+
 import numpy as np
 import cv2
 import Hog 

@@ -1,3 +1,10 @@
+## 
+'''
+author: Pruthviraj Patil
+version: 1.0
+
+'''
+
 import numpy as np
 import cv2
 from canny import Canny_edge_detector
@@ -49,7 +56,7 @@ class hog_feature_generator:
 		return(histogram)
 
 	def generate_feats(self, image, hist_window_dims, norm_window_size):
-		#status: incomplete
+		#status: complete
 	#steps as said in README
 
 	#step 2 : generate grads, directions, magnitudes

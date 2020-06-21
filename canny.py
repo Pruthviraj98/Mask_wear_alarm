@@ -1,3 +1,9 @@
+'''
+author: Pruthviraj Patil
+version: 1.0
+
+'''
+
 import cv2
 import numpy as np
 import math
