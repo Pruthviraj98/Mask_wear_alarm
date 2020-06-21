@@ -125,11 +125,15 @@ class NN:
 
 			prev_da, current_w, current_b=self.backward_pass(current_a, prev_a, current_w, current_b, current_z, activation)
 
-			gradients["dW"+str(layer+1)]=current_w
-			gradients["db"+str(layer+1)]=current_b
+			gradients["dW_"+str(layer+1)]=current_w
+			gradients["dB_"+str(layer+1)]=current_b
 
 		return gradients
 
+	def update(self, gradients, lr):
+		for index, layer in enumerate(self.Network_dims):
+			self.NN_Params["W_"+str(index+1)]-=lr*gradients["dW_"+str(index+1)]
+			self.NN_Params["B_"+str(index+1)]-=lr*gradients["dB_"+str(index+1)]
 
 	def train(self, X, Y, epochs, learning_rate):
 		#status: incomplete
@@ -141,7 +145,7 @@ class NN:
 			costs.append(cost)
 
 			gradients=self.backward_pass_over_network(Y, y_current, cache_mem)
-			self.NN_Params=self.update(gradients, learning_rate)
+			self.update(gradients, learning_rate)
 
 		return self.NN_Params, costs
 
