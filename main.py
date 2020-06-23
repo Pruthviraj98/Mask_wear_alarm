@@ -7,6 +7,7 @@ version: 1.0
 from ImageLoader import Img_load
 from utilities import image_utility
 import cv2
+from neural_net import NN
 
 class Image_rec:
 	def __init__(self):
@@ -16,8 +17,8 @@ class Image_rec:
 #status: complete
 	def load_and_preprocess(self, path):
 		img_path=path
-		images=img_load.load_img(img_path)
-		gray_images=util.convert_rgb_gray(images)
+		images=self.img_load.load_img(img_path)
+		gray_images=self.util.convert_rgb_gray(images)
 		return gray_images
 
 #extract hog (histogram oriented gradients) features
@@ -25,8 +26,28 @@ class Image_rec:
 	def get_hog_features(self, images):
 		hog_feats=[]
 		for image in images:
-			hog_feats.append(util.generate_hog(image))
+			hog_feats.append(self.util.generate_hog(image))
 		return hog_feats
+
+
+	def prep_data_to_train(self, pos_img_feats, neg_img_feats):
+		#status: incomplete
+		x-[]
+		y=[]
+		for i in pos_img_feats:
+			x.append(i.flatten())
+			y.append(1)
+		for j in neg_img_feats:
+			x.append(i.flatten())
+			y.append(0)
+		temp=list(zip(x, y))
+		np.random.shuffle(temp)
+		x, y=zip(*temp)
+		x=np.array(x)
+		y=np.array(y)
+
+		return x, y
+
 
 
 
@@ -57,5 +78,22 @@ class Image_rec:
 
 		#pass the hog features to neural network
 
-		
+		a, b, c=train_pos_hogs[0].shape
+		input_dim=a*b*c
+		nn=NN([250, 450, 550],  input_dim)
+		x_train, y_train=self.prep_data_to_train(train_pos_hogs, train_neg_hogs)
+		x_test, y_test=self.prep_data_to_train(test_pos_hogs, test_neg_hogs)
 
+		nn.print_network()
+
+		losses=[]
+		for x, y in zip(x_train, y_train):
+			params, loss=nn.train(x, y, 100, 0.05)
+			losses.append(loss)
+
+		preds=[]
+		for x in x_test:
+			preds=nn.test(x)
+		preds=np.array(preds)
+		accuracy=self.util.accuracy(preds, y_test)
+		print(accuracy)

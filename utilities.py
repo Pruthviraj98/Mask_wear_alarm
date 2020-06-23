@@ -13,7 +13,7 @@ class image_utility(Hog.hog_feature_generator):
 		self.gray_images=[]
 		self.hog_feat=hog()
 		self.Hog_feats=Hog.hog_feature_generator
-
+		self.neuralnet=neural_net.NN
 
 	def convert_rgb_gray(self, images):
 		#status: complete
@@ -27,3 +27,7 @@ class image_utility(Hog.hog_feature_generator):
 		#status: incomplete 
 		features=self.Hog_feats.generate_feats(self, image, (8, 8), 2)
 		return features
+
+	def accuracy(self, y_pred, y):
+		sames=np.sum(y_pred, y)
+		return(len(y)/sames)
