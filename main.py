@@ -59,7 +59,7 @@ class Image_rec:
 		return x, y, imgs
 
 #main function to run the model
-#status: incomplete
+#status: complete
 	def run_model(self, paths):
 
 		#load and preprocess the images
