@@ -6,26 +6,24 @@ version: 1.0
 
 import numpy as np
 import cv2
-import Hog 
+from Hog import hog_feature_generator
 
-class image_utility(Hog.hog_feature_generator):
+class image_utility:
 	def __init__(self):
-		self.gray_images=[]
-		self.hog_feat=hog()
-		self.Hog_feats=Hog.hog_feature_generator
-		self.neuralnet=neural_net.NN
+		self.Hog_feats=hog_feature_generator()
 
 	def convert_rgb_gray(self, images):
 		#status: complete
+		grays=[]
 		for img in images:
 			frame = 0.114 * img[:,:,0] + 0.587 * img[:,:,1] + 0.299 * img[:,:,2]
-			self.gray_images.append(frame)
-		return self.gray_images
+			grays.append(frame)
+		return grays
 
 	
 	def generate_hog(self, image):
 		#status: incomplete 
-		features=self.Hog_feats.generate_feats(self, image, (8, 8), 2)
+		features=self.Hog_feats.generate_feats(image, (8, 8), 2)
 		return features
 
 	def accuracy(self, y_pred, y):
