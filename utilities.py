@@ -22,10 +22,6 @@ class image_utility:
 
 	
 	def generate_hog(self, image):
-		#status: incomplete 
+		#status: complete 
 		features=self.Hog_feats.generate_feats(image, (8, 8), 2)
 		return features
-
-	def accuracy(self, y_pred, y):
-		sames=np.sum(y_pred, y)
-		return(len(y)/sames)
