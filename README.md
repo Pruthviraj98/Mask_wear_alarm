@@ -3,7 +3,7 @@
 The model detects if the person is wearing mask or not. for now, images are varified. Will update this compatible with a video device in a couple of days.
 
 ## What's so special about this project? - 
-Designed only using 3 libraries directly - cv2, numpy, math. 
+Everything (including nn) is designed only using 3 libraries directly - cv2, numpy, math. 
 
 Process Explained:
 
