@@ -57,8 +57,8 @@ Process Explained:
 		decreasing the histogram value by half. Thus we need the normalization process to eradicate this sensitivity. For example: Considering the RGB value of  a pixel:
 		[128, 64, 32], length= sqrt((128)**2 + (64)**2 + (32)**2) is 146.32. dividing th vector by this value, gives [0.87, 0.43, 0.22]. Considering another vector,
 		twice of first vector [256, 128, 64], by finding the normalized vector of it, we get the same [0.97, 0.43, 0.22] unchanged. For one block, there are 9*1
-		histogram, so for 4 blocks, i.e. for 16*16 block, we have 9*4=36 histogram values. Normalizing that, we have normalized 36*1 vector. Further, we move the window
-		further (refer the link :https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif). 
+		histogram, so for 4 blocks, i.e. for 16*16 block, we have 9*4=36 histogram values. Normalizing that, we have normalized 36*1 vector. Further, we move the window. 
+		![](https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif)
 
 	5. Calculating the HOG feature vector
 		Here, all the 36*1 vectors are concatenated to form a bigger vector.
@@ -90,7 +90,6 @@ Process Explained:
 		Binary Cross entropy in this case. 
 
 	Step 6. Define Backward prop function for single layer
-		![](http://miro.medium.com/max/268/1*FZ4slpsaH_U0YYhaSRqUEQ.gif)
 		
 	Step 7. Define the fully backward propagation module
 		Using the  Single Backward prop function create the fully backward prop module
