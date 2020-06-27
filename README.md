@@ -96,3 +96,6 @@ Process Explained:
 		Using the  Single Backward prop function create the fully backward prop module
 
 	Step 8. Create Train, Test and Update modules.
+
+### Real time output on cmd
+<img src=“https://github.com/Pruthviraj98/Mask_wear_alarm/blob/master/images/out.JPG”>
