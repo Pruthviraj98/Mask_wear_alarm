@@ -59,7 +59,7 @@ Process Explained:
 		twice of first vector [256, 128, 64], by finding the normalized vector of it, we get the same [0.97, 0.43, 0.22] unchanged. For one block, there are 9*1
 		histogram, so for 4 blocks, i.e. for 16*16 block, we have 9*4=36 histogram values. Normalizing that, we have normalized 36*1 vector. Further, we move the window. 
 
-![Screenshot](https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif)
+![](https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif)
 
 	5. Calculating the HOG feature vector
 		Here, all the 36*1 vectors are concatenated to form a bigger vector.
