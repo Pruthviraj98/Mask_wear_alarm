@@ -77,4 +77,4 @@ Process Explained:
 	Step 7. Define the fully backward propagation module
 		Using the  Single Backward prop function create the fully backward prop module
 
-	Step 8. Create Train, Test and Update modules
+	Step 8. Create Train, Test and Update modules.
