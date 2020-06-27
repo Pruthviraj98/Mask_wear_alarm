@@ -98,4 +98,4 @@ Process Explained:
 	Step 8. Create Train, Test and Update modules.
 
 ### Real time output on cmd
-<img src=“https://github.com/Pruthviraj98/Mask_wear_alarm/blob/master/images/out.JPG”>
+##### [alt text](https://github.com/Pruthviraj98/Mask_wear_alarm/blob/master/images/out.JPG)
