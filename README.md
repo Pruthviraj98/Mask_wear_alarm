@@ -22,7 +22,7 @@ Process Explained:
 		HOG is a feature descriptor. It converts images of size [width, height, 3(channels)] into a feature vector or a array of length n. In case of HOG, distribution of
 	directions of gradients (x, y derivatives) are used as features. This is useful because the magnitude of gradients in greater in edges and corners and that's where the
 	intensity of light changes abruptly and edges pack lots of info about the object.
-	Hog features are calculated on a patch of image (of any size). Conventionally, multiple such patches (of different size) at multiple locations of the same image are
+		Hog features are calculated on a patch of image (of any size). Conventionally, multiple such patches (of different size) at multiple locations of the same image are
 	considered for extracting the feature. 
 	So, the steps are: 
 	1. (Preprocessing)- selecting the patches from the image. 
