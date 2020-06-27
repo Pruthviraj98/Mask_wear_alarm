@@ -90,8 +90,8 @@ Process Explained:
 		Binary Cross entropy in this case. 
 
 	Step 6. Define Backward prop function for single layer
-		![Alt Text](https://miro.medium.com/max/268/1*FZ4slpsaH_U0YYhaSRqUEQ.gif)
-
+		![](http://miro.medium.com/max/268/1*FZ4slpsaH_U0YYhaSRqUEQ.gif)
+		
 	Step 7. Define the fully backward propagation module
 		Using the  Single Backward prop function create the fully backward prop module
 
