@@ -19,10 +19,10 @@ Process Explained:
 
 ### Hog (Histogram Oriented Gradient) feature extraction features:
 
-	HOG is a feature descriptor. It converts images of size [width, height, 3(channels)] into a feature vector or a array of length n. In case of HOG, distribution of
+   HOG is a feature descriptor. It converts images of size [width, height, 3(channels)] into a feature vector or a array of length n. In case of HOG, distribution of
 directions of gradients (x, y derivatives) are used as features. This is useful because the magnitude of gradients in greater in edges and corners and that's where the
 intensity of light changes abruptly and edges pack lots of info about the object.
-	Hog features are calculated on a patch of image (of any size). Conventionally, multiple such patches (of different size) at multiple locations of the same image are
+   Hog features are calculated on a patch of image (of any size). Conventionally, multiple such patches (of different size) at multiple locations of the same image are
 considered for extracting the feature. 
 So, the steps are: 
 1. (Preprocessing)- selecting the patches from the image. 
@@ -57,10 +57,10 @@ Here, gx and gy can be calculated by convoluting the patch with the filters like
 	decreasing the histogram value by half. Thus we need the normalization process to eradicate this sensitivity. For example: Considering the RGB value of  a pixel:
 	[128, 64, 32], length= sqrt((128)**2 + (64)**2 + (32)**2) is 146.32. dividing th vector by this value, gives [0.87, 0.43, 0.22]. Considering another vector,
 	twice of first vector [256, 128, 64], by finding the normalized vector of it, we get the same [0.97, 0.43, 0.22] unchanged. For one block, there are 9*1
-	histogram, so for 4 blocks, i.e. for 16*16 block, we have 9*4=36 histogram values. Normalizing that, we have normalized 36*1 vector. Further, we move the window. 
-
-<img src="https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif" width="100" height="100" />
-
+	histogram, so for 4 blocks, i.e. for 16*16 block, we have 9*4=36 histogram values. Normalizing that, we have normalized 36*1 vector. Further, we move the window as shown below. 
+<p align="center">
+<img src="https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif" width="200" height="200" />
+</p>
 5. Calculating the HOG feature vector
 	Here, all the 36*1 vectors are concatenated to form a bigger vector.
 	Ex: How many different positions did the 16*16 window moved in the picture?
