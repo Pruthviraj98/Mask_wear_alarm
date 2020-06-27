@@ -36,7 +36,9 @@ Here, gx and gy can be calculated by convoluting the patch with the filters like
 	  y-grad= fires on horizontal lines
 	  magnitude= where there is sharp change in intensity
 	  For color images, the gradients of the three channels are evaluated ang the max of the gradient pixel among three at every pixel is chosen)
-
+<p align="center">
+<img src= "https://miro.medium.com/max/1134/1*IwljpmrsYp99242w5wnFbQ.png" width=400 height=200>
+</p>
 
 3. Calculate Histogram of Gradients in 8*8 cells
 	First the image is converted to 8*8 cells. Further the histogram of gradients is calculated for each of those cells
@@ -61,7 +63,7 @@ Here, gx and gy can be calculated by convoluting the patch with the filters like
 	twice of first vector [256, 128, 64], by finding the normalized vector of it, we get the same [0.97, 0.43, 0.22] unchanged. For one block, there are 9*1
 	histogram, so for 4 blocks, i.e. for 16*16 block, we have 9*4=36 histogram values. Normalizing that, we have normalized 36*1 vector. Further, we move the window as shown below. 
 <p align="center">
-<img src="https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif" width="100" height="100" />
+<img src="https://www.learnopencv.com/wp-content/uploads/2016/12/hog-16x16-block-normalization.gif" width="200" height="400" />
 </p>
 5. Calculating the HOG feature vector
 	Here, all the 36*1 vectors are concatenated to form a bigger vector.
