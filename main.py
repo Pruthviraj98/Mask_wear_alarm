@@ -172,28 +172,7 @@ print("predictions=",predictions)
 
 
 
-###time for some fun
+###time for gettin realtime
 
-url='http://192.168.43.1:8081/shot.jpg'
+# url='http://192.168.43.1:8081/shot.jpg' #enter your url here
 model.real_time_exe(url)
-
-# url='http://192.168.43.1:8081/shot.jpg'
-
-# while(True):
-# 	imgResponse = urllib.request.urlopen(url)
-# 	imgNp = np.array(bytearray(imgResponse.read()),dtype=np.uint8)
-# 	img = cv2.imdecode(imgNp,-1)
-# 	width=64
-# 	height=64
-# 	dim=(width, height)
-# 	resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-
-# 	cv2.imshow('IPWebcam',resized)
-# 	if (cv2.waitKey(1) & 0xFF == ord('q')):
-# 		break
-
-
-
-
-# print("shape=", resized.shape)
-
