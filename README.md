@@ -1,4 +1,4 @@
-# Mask_wear_alarm
+# Maskodagama
 
 The model detects if the person is wearing mask or not in real time (cam input).
 
